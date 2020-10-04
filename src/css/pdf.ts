@@ -1,4 +1,4 @@
-import { syntax as css } from '@friends-library/types';
+import css from 'x-syntax';
 import { dynamifyCss, docDims, PRINT_BLEED, pdfSpineWidth } from './helpers';
 import { CoverProps, Css } from '@friends-library/types';
 

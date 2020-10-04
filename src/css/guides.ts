@@ -1,4 +1,4 @@
-import { syntax as css } from '@friends-library/types';
+import css from 'x-syntax';
 import { CoverCssModule } from './types';
 import { dynamifyCss, PRINT_BLEED, withSizes } from './helpers';
 
