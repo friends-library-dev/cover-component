@@ -3,19 +3,11 @@
   "version": "1.0.1",
   "description": "paperback cover react component",
   "main": "./dist/index.js",
+  "browser": "./src/index.web.ts",
   "author": "Jared Henderson <jared@netrivet.com>",
   "repository": "github:friends-library-dev/cover-component",
   "license": "MIT",
   "sideEffects": false,
-  "browser": {
-    "./dist/index.js": "./src/index.ts",
-    "./src/Logo.ts": "./src/Logo.web.ts",
-    "./src/LogoIcon.ts": "./src/LogoIcon.web.ts",
-    "./src/LogoSpanish.ts": "./src/LogoSpanish.web.ts",
-    "./dist/Logo.js": "./src/Logo.web.ts",
-    "./dist/LogoIcon.js": "./src/LogoIcon.web.ts",
-    "./dist/LogoSpanish.js": "./src/LogoSpanish.web.ts"
-  },
   "scripts": {
     "test": "fldev test",
     "test:watch": "fldev test:watch",
