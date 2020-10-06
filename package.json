@@ -3,7 +3,7 @@
   "version": "1.0.2",
   "description": "paperback cover react component",
   "main": "./dist/index.js",
-  "browser": "./src/index.web.ts",
+  "browser": "./src/index.ts",
   "author": "Jared Henderson <jared@netrivet.com>",
   "repository": "github:friends-library-dev/cover-component",
   "license": "MIT",
@@ -16,7 +16,9 @@
     "ts:check": "fldev ts:check",
     "format": "fldev format",
     "compile": "fldev ts:compile",
-    "prepublishOnly": "npm run compile"
+    "prepublishOnly": "npm run compile",
+    "prepack": "bash ./prepack.sh",
+    "postpack": "bash ./postpack.sh"
   },
   "dependencies": {
     "@friends-library/adoc-utils": "^1.1.1",
