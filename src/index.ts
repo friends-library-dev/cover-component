@@ -10,9 +10,5 @@ export { default as Diamonds } from './Diamonds';
 export { default as LogoEnglish } from './Logo';
 export { default as LogoSpanish } from './LogoSpanish';
 export { wrapClasses, docDims, pdfHeight, pdfWidth, pdfSpineWidth } from './css/helpers';
+export { CoverWebStylesAllStatic, CoverWebStylesSizes } from './Styles';
 export { css };
-export {
-  CoverWebStylesAllStatic,
-  CoverWebStylesAllDynamic,
-  CoverWebStylesSizes,
-} from './Styles';
