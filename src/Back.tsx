@@ -3,20 +3,10 @@ import { CoverProps } from '@friends-library/types';
 import Diamonds from './Diamonds';
 import { overridable, formatBlurb, getHtmlFragments } from './helpers';
 import Brackets from './Brackets';
-import EditableBlurb from './EditableBlurb';
 import LogoSpanish from './LogoSpanish';
 import Logo from './Logo';
 
-type Props = Pick<
-  CoverProps,
-  | 'blurb'
-  | 'customHtml'
-  | 'isbn'
-  | 'lang'
-  | 'edition'
-  | 'allowEditingBlurb'
-  | 'updateBlurb'
-> & {
+type Props = Pick<CoverProps, 'blurb' | 'customHtml' | 'isbn' | 'lang' | 'edition'> & {
   bgOnly?: boolean;
   style?: { [k in string]: number | string };
 };
@@ -26,8 +16,6 @@ const Back: React.FC<Props> = ({
   isbn,
   lang,
   edition,
-  allowEditingBlurb,
-  updateBlurb,
   customHtml,
   bgOnly,
   style,
@@ -43,20 +31,10 @@ const Back: React.FC<Props> = ({
             {overridable(
               `blurb`,
               fragments,
-              allowEditingBlurb ? (
-                <div className="blurb">
-                  <Brackets />
-                  <EditableBlurb
-                    blurb={formatBlurb(blurb)}
-                    update={updateBlurb || (() => {})}
-                  />
-                </div>
-              ) : (
-                <div className="blurb">
-                  <Brackets />
-                  {formatBlurb(blurb)}
-                </div>
-              ),
+              <div className="blurb">
+                <Brackets />
+                {formatBlurb(blurb)}
+              </div>,
             )}
             {isbn && (
               <img
