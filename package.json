@@ -22,15 +22,15 @@
   },
   "dependencies": {
     "@friends-library/adoc-utils": "^1.1.1",
-    "@friends-library/lulu": "^1.1.1",
-    "@friends-library/types": "^2.0.0",
+    "@friends-library/lulu": "^1.2.0",
+    "@friends-library/types": "^3.0.0",
     "classnames": "^2.2.6",
     "react": "16.10.1",
     "roman-numerals": "^0.3.2",
     "x-syntax": "^1.0.0"
   },
   "devDependencies": {
-    "@friends-library/dev": "^4.1.11",
+    "@friends-library/dev": "^4.1.12",
     "@types/react": "16.9.11"
   }
 }
