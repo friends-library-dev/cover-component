@@ -48,7 +48,6 @@ const ThreeD: React.FC<Props> = (props) => {
             transform: `rotateY(180deg) translateZ(${(spineWidth * scaler) / 2}in)`,
           }}
         />
-        )
         <Spine
           {...props}
           styles={{
