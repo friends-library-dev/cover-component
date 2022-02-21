@@ -1,4 +1,3 @@
-import { Css } from '@friends-library/types';
 import common from './common';
 import front from './front';
 import back from './back';
@@ -7,7 +6,7 @@ import guides from './guides';
 import threeD from './3d';
 import pdf from './pdf';
 
-export default function allStatic(withGuides?: boolean): Css {
+export default function allStatic(withGuides?: boolean): string {
   return [
     common()[0],
     front()[0],

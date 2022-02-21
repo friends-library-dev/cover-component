@@ -1,12 +1,11 @@
 import css from 'x-syntax';
-import { Css } from '@friends-library/types';
 import common from './common';
 import front from './front';
 import back from './back';
 import spine from './spine';
 import threeD from './3d';
 
-export default function allDynamic(): Css {
+export default function allDynamic(): string {
   const sizes: [number, string][] = [
     [1, `full`],
     [3 / 5, `3-5`],

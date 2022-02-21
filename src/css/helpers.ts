@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import { CoverProps, PrintSize, Css } from '@friends-library/types';
+import { CoverProps, PrintSize } from '@friends-library/types';
 import { sizes as bookSizes, PAGES_PER_INCH } from '@friends-library/lulu';
 
 export interface DocDims {
@@ -41,7 +41,7 @@ export function allSizesDocDims(): { [k in PrintSize]: DocDims } {
   };
 }
 
-export function withSizes(fn: (dims: DocDims, size: PrintSize) => Css): Css {
+export function withSizes(fn: (dims: DocDims, size: PrintSize) => string): string {
   const sizes: PrintSize[] = [`s`, `m`, `xl`];
   return sizes
     .map((size) => fn(docDims(size), size).replace(/__SIZE__/g, size))
@@ -78,7 +78,7 @@ export function wrapClasses(
   );
 }
 
-export function scaleCssInches(css: Css, scaler?: number): Css {
+export function scaleCssInches(css: string, scaler?: number): string {
   if (typeof scaler !== `number`) {
     return css;
   }
@@ -90,7 +90,7 @@ export function scaleCssInches(css: Css, scaler?: number): Css {
   });
 }
 
-export function scopeCss(css: Css, scope?: string): Css {
+export function scopeCss(css: string, scope?: string): string {
   if (!scope) {
     return css;
   }
@@ -98,7 +98,7 @@ export function scopeCss(css: Css, scope?: string): Css {
   return css.replace(/\.Cover(?=\.| |,)/gm, `.Cover--scope-${scope}`);
 }
 
-export function dynamifyCss(css: Css, scope?: string, scaler?: number): Css {
+export function dynamifyCss(css: string, scope?: string, scaler?: number): string {
   return scopeCss(scaleCssInches(css, scaler), scope);
 }
 

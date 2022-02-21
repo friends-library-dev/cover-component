@@ -1,12 +1,12 @@
 import css from 'x-syntax';
 import { dynamifyCss, docDims, PRINT_BLEED, pdfSpineWidth } from './helpers';
-import { CoverProps, Css } from '@friends-library/types';
+import { CoverProps } from '@friends-library/types';
 
 export default function pdf(
   { size, pages }: Pick<CoverProps, 'size' | 'pages'>,
   scaler?: number,
   scope?: string,
-): [Css, Css] {
+): [string, string] {
   const staticCss = css`
     html.prince,
     html.prince body {

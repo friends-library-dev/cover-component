@@ -1,11 +1,11 @@
 import React from 'react';
 import { toRoman } from 'roman-numerals';
-import { Html, Lang } from '@friends-library/types';
+import { Lang } from '@friends-library/types';
 import { quotify } from '@friends-library/adoc-utils';
 
 export function overridable(
   key: string,
-  fragments: Record<string, Html>,
+  fragments: Record<string, string>,
   fallback: JSX.Element,
 ): JSX.Element {
   if (fragments[key] !== undefined) {
@@ -30,8 +30,17 @@ export function initials(
     // [F]riends [L]ibrary || [B]iblioteca [A]migos
     return lang === `en` ? [`F`, `L`] : [`B`, `A`];
   }
-  const [first, ...rest] = author.split(` `);
-  return [first[0].toUpperCase(), rest[rest.length - 1][0].toUpperCase()];
+  const [first = ``, ...rest] = author.split(` `);
+  const [firstInitial, lastInitial]: [string?, string?] = [
+    first[0]?.toUpperCase(),
+    rest[rest.length - 1]?.[0]?.toUpperCase(),
+  ];
+
+  if (!firstInitial || !lastInitial) {
+    throw new Error(`Failed to resolve cover initials for ${author} - ${title}`);
+  }
+
+  return [firstInitial, lastInitial];
 }
 
 export function prepareTitle(
@@ -59,7 +68,7 @@ export function prepareAuthor(
   if (!volumeMatch && isCompilation) {
     return lang === `en` ? `Friends Library` : `Biblioteca de los Amigos`;
   }
-  if (volumeMatch && (nameInTitle || isCompilation)) {
+  if (volumeMatch && volumeMatch[1] && (nameInTitle || isCompilation)) {
     return `Volume${lang === `es` ? `n` : ``} ${ensureRoman(volumeMatch[1])}`;
   }
   return author;
@@ -78,18 +87,18 @@ export function formatBlurb(blurb: string): string {
     .replace(/--/g, `–`);
 }
 
-export function getHtmlFragments(html: Html): Record<string, Html> {
-  const fragments: Record<string, Html> = {};
+export function getHtmlFragments(html: string): Record<string, string> {
+  const fragments: Record<string, string> = {};
   const regex = /(?:^|\n)<(div|p|h\d).+?\n<\/\1>/gs;
   let match: RegExpExecArray | null = null;
   while ((match = regex.exec(html))) {
-    const lines = match[0]
+    const lines = (match[0] ?? ``)
       .trim()
       .split(`\n`)
       .map((s) => s.trim());
     lines.pop();
     const classMatch = (lines.shift() || ``).match(/class="([^ "]+)/);
-    if (classMatch) {
+    if (classMatch && classMatch[1]) {
       fragments[classMatch[1]] = lines.join(``);
     } else {
       console.error(`Bad custom HTML -- frag wrapping elements must have class`);

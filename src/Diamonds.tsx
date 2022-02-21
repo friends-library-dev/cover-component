@@ -40,6 +40,11 @@ const spanish: React.FC = () => (
   </svg>
 );
 
-const Diamonds: { [k: string]: React.FC } = { original, modernized, updated, spanish };
+const Diamonds: {
+  original: React.FC;
+  modernized: React.FC;
+  updated: React.FC;
+  spanish: React.FC;
+} = { original, modernized, updated, spanish };
 
 export default Diamonds;
